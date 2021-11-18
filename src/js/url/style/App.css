@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.url-shortener-container-border{
+  border: 0.2rem solid #ececec;
+  border-width: 5px 3px 5px 3px;
+  border-radius: 8px 8px 8px 8px;
+  height: 760px;
+}
+
+.url-shortener-form-padding{
+  padding: 10px 10px 10px 10px;
+}
+.url-shortener-col-padding{
+  padding-top: 10px;
+}
