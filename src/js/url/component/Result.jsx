@@ -18,8 +18,8 @@ class Result extends React.Component {
         return (
             <div>
 
-                <Alert variant="success">
-                    <Alert.Heading>URL Result</Alert.Heading>
+                {/* <Alert variant="success">
+                    <Alert.Heading>URL Result</Alert.Heading> */}
                     <Row>
                         <Col xs lg="1"></Col>
                         <Col xs lg="5">
@@ -39,7 +39,7 @@ class Result extends React.Component {
                             </Row>
                         </Col>
                     </Row>
-                </Alert>
+                {/* </Alert> */}
             </div>)
     }
 }

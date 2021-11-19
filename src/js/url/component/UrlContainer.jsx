@@ -9,7 +9,6 @@ class UrlContainer extends React.Component {
   }
 
   render() {
-    const { shortenedUrlResponse } = this.props;
     return (
       <Container className="url-shortener-container-border">
         <UrlForm />
@@ -17,5 +16,6 @@ class UrlContainer extends React.Component {
     );
   }
 }
+
 
 export default UrlContainer;

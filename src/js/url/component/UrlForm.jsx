@@ -7,10 +7,12 @@ class UrlForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            value: '',
             error: null,
             shortenedUrlResponse: null,
             urlValidation: false,
-            showBanner: false,
+            showErrorBanner: false,
+            showSuccessBanner: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,7 +24,7 @@ class UrlForm extends React.Component {
             '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
             '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
             '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
-        !!pattern.test(url);
+        return pattern.test(url);
     }
 
     handleChange(event) {
@@ -30,14 +32,10 @@ class UrlForm extends React.Component {
     }
 
     handleSubmit(event) {
-        if (!this.validateUrl(this.state.value)) {
-            this.setState({ urlValidation: true });
-            this.setState({ showBanner: true });
-            this.setState({ shortenedUrlResponse: null });
-        }
-        if (this.state.urlValidation) {
+        if (this.validateUrl(this.state.value)) {
             this.setState({ urlValidation: false });
-            this.setState({ showBanner: false });
+            this.setState({ showSuccessBanner: true });
+            this.setState({ showErrorBanner: false });
             fetch('/urlshortener', {
                 method: 'POST',
                 headers: {
@@ -52,16 +50,20 @@ class UrlForm extends React.Component {
                 .catch((error) => {
                     this.setState({ error: data });
                 });
+
+        }
+        else {
+            this.setState({ urlValidation: true, showErrorBanner: true, shortenedUrlResponse: null, showSuccessBanner: false });
         }
         event.preventDefault();
     }
 
     setClose() {
-        this.setState({ showBanner: false });
+        this.setState({ showErrorBanner: false });
     }
 
     render() {
-        const { shortenedUrlResponse, error, urlValidation, showBanner, error } = this.state;
+        const { shortenedUrlResponse, error, urlValidation, showErrorBanner, showSuccessBanner } = this.state;
         return (
             <div>
                 <Form className="url-shortener-form-padding" onSubmit={this.handleSubmit}>
@@ -76,13 +78,13 @@ class UrlForm extends React.Component {
                         </Col>
                     </Row>
                 </Form>
-                {
+                {/* {
                     shortenedUrlResponse && <Result shortenedUrlResponse={shortenedUrlResponse} />
-                }
-                {showBanner && <Alert variant="danger" onClose={() => this.setClose()} dismissible>
-                    <Alert.Heading>{urlValidation ? "Validation Error" : "Server Error"}</Alert.Heading>
+                } */}
+                {(showErrorBanner || showSuccessBanner) && <Alert variant={showErrorBanner ? "danger" : "success"} onClose={() => this.setClose()} dismissible>
+                    <Alert.Heading>{showErrorBanner ? "Error Occured" : "URL Result"}</Alert.Heading>
                     <p>
-                        {urlValidation ? "URL validation failed !" : "Failed to process the URL !"}
+                        {showErrorBanner ? "Error occured while processing the URL" : shortenedUrlResponse && <Result shortenedUrlResponse={shortenedUrlResponse} />}
                     </p>
                 </Alert>}
             </div>
