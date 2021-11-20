@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Result components 1`] = `
+<div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-lg-1 col"
+    />
+    <div
+      className="col-lg-5 col"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col"
+        >
+          Original URL
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col"
+        >
+          Mock Url
+        </div>
+      </div>
+    </div>
+    <div
+      className="col-lg-6 col"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col"
+        >
+          Shortened UR
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col"
+        >
+          <a
+            href="https://Mock Url"
+            target="_blank"
+          >
+            www.mockurl.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Url container components 1`] = `
+<div
+  className="url-shortener-container-border container"
+>
+  <div>
+    <form
+      className="url-shortener-form-padding"
+      onSubmit={[Function]}
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-lg-1 col"
+        >
+          <label
+            className="form-label"
+          >
+            URL
+          </label>
+        </div>
+        <div
+          className="col"
+        >
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="Enter url"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-lg-1 col"
+        />
+        <div
+          className="url-shortener-col-padding col-lg-2 col"
+        >
+          <input
+            className="btn btn-primary"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            role="button"
+            tabIndex={0}
+            type="submit"
+            value="Submit"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;

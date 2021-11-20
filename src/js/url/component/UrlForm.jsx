@@ -10,7 +10,6 @@ class UrlForm extends React.Component {
             value: '',
             error: null,
             shortenedUrlResponse: null,
-            urlValidation: false,
             showErrorBanner: false,
             showSuccessBanner: false
         };
@@ -33,7 +32,6 @@ class UrlForm extends React.Component {
 
     handleSubmit(event) {
         if (this.validateUrl(this.state.value)) {
-            this.setState({ urlValidation: false });
             this.setState({ showSuccessBanner: true });
             this.setState({ showErrorBanner: false });
             fetch('/urlshortener', {
@@ -53,7 +51,7 @@ class UrlForm extends React.Component {
 
         }
         else {
-            this.setState({ urlValidation: true, showErrorBanner: true, shortenedUrlResponse: null, showSuccessBanner: false });
+            this.setState({ showErrorBanner: true, shortenedUrlResponse: null, showSuccessBanner: false });
         }
         event.preventDefault();
     }
@@ -63,7 +61,7 @@ class UrlForm extends React.Component {
     }
 
     render() {
-        const { shortenedUrlResponse, error, urlValidation, showErrorBanner, showSuccessBanner } = this.state;
+        const { shortenedUrlResponse, showErrorBanner, showSuccessBanner } = this.state;
         return (
             <div>
                 <Form className="url-shortener-form-padding" onSubmit={this.handleSubmit}>
@@ -78,9 +76,6 @@ class UrlForm extends React.Component {
                         </Col>
                     </Row>
                 </Form>
-                {/* {
-                    shortenedUrlResponse && <Result shortenedUrlResponse={shortenedUrlResponse} />
-                } */}
                 {(showErrorBanner || showSuccessBanner) && <Alert variant={showErrorBanner ? "danger" : "success"} onClose={() => this.setClose()} dismissible>
                     <Alert.Heading>{showErrorBanner ? "Error Occured" : "URL Result"}</Alert.Heading>
                     <p>
